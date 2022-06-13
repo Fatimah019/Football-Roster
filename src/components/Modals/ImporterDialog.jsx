@@ -13,11 +13,10 @@ const ImporterDialog = ({ importerModalRef }) => {
     const fileReader = new FileReader();
     const [choosenFileName, setChosenFileName] = useState("No file selected")
     const [fileType, setFileType] = useState("")
-    const [isInValidImportData, setIsInValidImportData] = useState(true);
+    const [isMissingData, setIsMissingData] = useState(false);
     const tableContext = useContext(TeamDataContext)
     const [loadedData, setLoadedData] = useState(null)
     const dataInfo = useContext(TeamDataContext)
-
 
     const handleFileChange = (e) => {
         const [file] = e.target.files
@@ -34,8 +33,11 @@ const ImporterDialog = ({ importerModalRef }) => {
     }
 
     useEffect(() => {
-        setIsInValidImportData(checkForInvalidInput(tableContext?.teamData, ""))
-    }, [tableContext?.teamData])
+        setIsMissingData(checkForInvalidInput(tableContext?.loadedData, ""))
+        // console.log(fileType, "filetype")
+    }, [tableContext?.loadedData, fileType])
+
+    console.log(isMissingData, "missing")
 
     const handleFileImport = (e) => {
         e.preventDefault();
@@ -52,11 +54,16 @@ const ImporterDialog = ({ importerModalRef }) => {
                 </div>
                 <div className={styles.importer_modal_body_note}>
                     {
-                        isInValidImportData || fileType !== "csv" ? <div className={styles.importer_modal_body_error_block}>
-                            <span>Error</span>
-                            <span>Your sheet is missing data. Please ensure all cells are filled out.</span>
-                        </div>
-                            : <span className={styles.importer_modal_body_csv_note}>File must be in .csv format</span>
+                        isMissingData && choosenFileName !== "No file selected" ?
+                            <div className={styles.importer_modal_body_error_block}>
+                                <span>Error</span>
+                                <span>Your sheet is missing data. Please ensure all cells are filled out.</span>
+                            </div>
+                            :
+                            choosenFileName === "No file selected" && !tableContext?.loadedData?.length ?
+                                <span className={styles.importer_modal_body_csv_note}>File must be in .csv format</span>
+                                :
+                                <span className={styles.importer_modal_body_csv_note}>File must be in .csv format</span>
                     }
                 </div>
 
@@ -71,10 +78,10 @@ const ImporterDialog = ({ importerModalRef }) => {
             <div className={styles.importer_modal_body_bottom}>
                 <AppButton
                     onClick={(e) => handleFileImport(e)}
-                    button_textcolor={!isInValidImportData && loadedData ? "#fff" : "var(--text-disabled)"}
+                    button_textcolor={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected" ? "var(--text-disabled)" : "#fff"}
                     button_text="Import"
-                    button_background={!isInValidImportData && loadedData ? "var(--primary-orange" : "transparent"}
-                    disabled={isInValidImportData || !loadedData}
+                    button_background={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected" ? "transparent" : "var(--primary-orange"}
+                    disabled={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected"}
                 />
             </div>
         </div>

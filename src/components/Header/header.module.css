@@ -5,9 +5,6 @@
   align-self: stretch;
 }
 
-.left_app_header {
-}
-
 .left_app_header span {
   color: var(--primary-orange);
   font-weight: 500;

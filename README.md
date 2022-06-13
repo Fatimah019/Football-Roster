@@ -1,1 +1,1 @@
-# hidetest
+# Koneksys test (Football Manager app)

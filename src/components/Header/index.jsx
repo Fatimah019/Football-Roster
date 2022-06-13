@@ -33,6 +33,7 @@ const Header = () => {
                                 button_text={`${dataLength ? "Re-Import Team" : "Import Team"}`}
                                 button_background={`${dataLength ? "transparent" : "var(--primary-orange)"}`}
                                 button_textcolor={`${dataLength ? "var(--text-normal)" : "var(--text-headings)"}`}
+                                borderColor={`${dataLength ? "1px solid var(--borders-default)" : "none"}`}
                                 onClick={openImporterModal} />
                         </div>
                 }
