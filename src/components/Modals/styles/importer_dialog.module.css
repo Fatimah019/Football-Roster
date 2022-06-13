@@ -1,0 +1,86 @@
+.importer_modal_wrapper {
+  max-width: 752px;
+}
+.importer_modal_body {
+  border-top: 1px solid var(--borders-default);
+  padding: 24px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 540px;
+}
+
+.importer_modal_body .importer_modal_body_top {
+}
+
+.importer_modal_body .importer_modal_body_top h3 {
+  color: var(--text-headings);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0;
+}
+
+.importer_modal_body_file_picker {
+  margin-top: 8px;
+}
+
+.importer_modal_body_note {
+  margin-top: 16px;
+}
+
+.importer_modal_body_csv_note {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text-muted);
+}
+
+.importer_modal_body_error_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.importer_modal_body_error_block span:nth-child(1) {
+  color: var(--primary-red);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.importer_modal_body_error_block span:nth-child(2) {
+  margin-top: 8px;
+  color: var(--text-normal);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.importer_modal_body .importer_modal_body_file_summary {
+  margin-top: 32px;
+}
+
+.importer_modal_body .importer_modal_body_file_summary h3 {
+  color: var(--text-headings);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  margin: 0;
+  padding: 0;
+}
+
+.importer_modal_body .importer_modal_body_file_summary .file_summary_table {
+  margin-top: 24px;
+}
+
+.importer_modal_body .importer_modal_body_bottom {
+  text-align: right;
+}
+
+.importer_modal_body .importer_modal_body_bottom span {
+  color: var(--text-disabled);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}

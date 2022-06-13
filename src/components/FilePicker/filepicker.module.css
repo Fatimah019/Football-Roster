@@ -1,0 +1,45 @@
+.file_picker {
+  height: 44px;
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  gap: 10px;
+  border: 1px solid var(--borders-default);
+}
+.file_picker.valid {
+  border: 1px solid var(--borders-default);
+}
+.file_picker.error {
+  border: 1px solid var(--primary-red);
+}
+.file_name {
+  font-weight: 400;
+  padding: 12px 16px 11px;
+}
+
+.file_name,
+.file_picker_button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-normal);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.file_picker_button {
+  font-weight: 500;
+  cursor: pointer;
+  padding: 12px 20px 11px;
+  border-radius: 8px 0px 0px 8px;
+  border-left: 1px solid var(--borders-default);
+}
+.file_picker_button.valid {
+  border-left: 1px solid var(--borders-default);
+}
+.file_picker_button.error {
+  border-left: 1px solid var(--primary-red);
+}

@@ -1,0 +1,41 @@
+.side_bar {
+  background: #111111;
+  padding: 14px;
+  max-width: 60px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  /* border-right: 1px solid white; */
+}
+
+.side_bar_list {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.nav_links {
+  text-decoration: none;
+}
+
+.nav_links.active {
+  position: relative;
+}
+
+.nav_links.active::before {
+  content: ".";
+  text-decoration: none;
+  color: var(--primary-orange);
+  display: flex;
+  position: absolute;
+  left: -4px;
+  top: -50%;
+}
+
+.nav_links.active path {
+  fill: var(--primary-orange);
+  stroke-width: 0;
+}

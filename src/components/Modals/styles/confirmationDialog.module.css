@@ -1,0 +1,29 @@
+.confirmation_modal_wrapper {
+  max-width: 379px;
+}
+.confirmation_modal_body {
+  padding: 24px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 141px;
+}
+
+.importer_modal_body p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  margin: unset;
+  padding: 0;
+}
+
+.confirmation_modal_body .confirmation_modal_body_bottom {
+  text-align: right;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.confirmation_modal_body .confirmation_modal_body_bottom button:nth-child(1) {
+  border: 1px solid var(--borders-default);
+}

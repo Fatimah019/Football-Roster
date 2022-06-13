@@ -1,0 +1,50 @@
+.app_menu_container {
+  position: absolute;
+  padding: 16px 16px 24px;
+  box-shadow: 0px 12px 28px rgba(22, 22, 22, 0.5);
+  border-radius: 8px;
+  background-color: var(--neutral-background-2);
+  z-index: 1;
+  right: 0;
+  width: 233px;
+}
+.app_menu_container_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app_menu_container_header h3 {
+  color: var(--text-headings);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  margin: 0;
+  padding: 0;
+}
+.app_menu_container_header svg {
+  cursor: pointer;
+}
+.app_menu_box {
+  display: flex;
+  flex-direction: column;
+  row-gap: 23px;
+  margin-top: 16px;
+}
+
+.menu_item_container {
+  display: flex;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+.menu_item_container span {
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.menu_item_container span:nth-child(2) {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+}

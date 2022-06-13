@@ -1,0 +1,8 @@
+.app_action_container {
+  position: relative;
+  width: 100%;
+}
+
+.more_icon_button {
+  cursor: pointer;
+}
