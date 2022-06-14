@@ -4,19 +4,17 @@ import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const AppFilePicker = ({ fileName = "No file selected", fileType = "", handleFileChange }) => {
+const AppFilePicker = ({ fileName = "No file selected", inValidFile, handleFileChange }) => {
     const fileRef = useRef()
     return (
         <div className={cx({
             file_picker: true,
-            valid: fileType === "",
-            error: fileType !== "csv" && fileName !== "No file selected",
+            error: inValidFile,
         })}>
             <span className={styles.file_name}>{fileName}</span>
             <button onClick={() => fileRef.current.click()} className={cx({
                 file_picker_button: true,
-                valid: fileType === "",
-                error: fileType !== "csv" && fileName !== "No file selected",
+                error: inValidFile,
             })}>Select File</button>
 
             <form>

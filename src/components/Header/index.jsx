@@ -35,7 +35,6 @@ const Header = () => {
                         className={styles.roaster_details_edit}
                         onMouseOver={() => setShowPen(true)}
                         onMouseLeave={() => setShowPen(false)}
-
                     >
                         <span
                             onChange={onChangeTeamName}
@@ -44,13 +43,6 @@ const Header = () => {
                         >
                             {teamNameVal}
                         </span>
-                        {/* <input type="text"
-                            value={teamNameVal}
-                            onChange={onChangeTeamName}
-                            onMouseOver={() => setShowPen(true)}
-                            onMouseLeave={() => teamNameVal === "My Team" && setShowPen(true)}
-                            placeholder="My Team"
-                        /> */}
                         {
                             showPen && <PenEditIcon />
                         }

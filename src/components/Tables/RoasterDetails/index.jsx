@@ -36,8 +36,6 @@ const RoasterDetailsTable = () => {
             <PlayerEditDialog
                 playerEditModalRef={playerEditModalDialogRef}
                 data={playerData}
-                // updatedData={searchData?.searchedData}
-                // setUpdatedData={searchData.setSearchedData}
                 id={playerIndex}
             />
             <ConfirmationDialog
