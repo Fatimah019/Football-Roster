@@ -1,33 +1,33 @@
 import React, { useContext, useEffect, useRef } from "react";
 import WarningDialog from "../../components/Modals/WarningDialog";
-import { TeamDataContext } from "../../context/data";
 import TeamField from "../../components/TeamField";
+import { SearchContext } from "../../context/search";
 
 const UsersLine = () => {
     const warningDialogRef = useRef()
 
-    const data = useContext(TeamDataContext)
-    const startersData = data?.teamData?.filter(starter => starter?.Starter === 'Yes');
+    const data = useContext(SearchContext)
+    const startersData = data?.searchedData?.filter(starter => starter?.Starter === 'Yes');
 
     useEffect(() => {
         warningDialogRef?.current?.displayModal()
-    }, [warningDialogRef, data?.teamData])
+    }, [warningDialogRef, data?.searchedData])
 
     return (
         <>
-            <TeamField data={data?.teamData} dataLength={startersData?.length} />
+            <TeamField data={data?.searchedData} dataLength={startersData?.length} />
             {
-                data?.teamData?.length && startersData?.length > 11 ?
+                data?.searchedData?.length && startersData?.length > 11 ?
                     <WarningDialog
                         warningModalRef={warningDialogRef}
                         title="There are too many starters"
                         message="Your team has too many starters for one or more of the positions in the 4-3-3 formation." /> :
-                    data?.teamData?.length && startersData?.length < 11 ?
+                    data?.searchedData?.length && startersData?.length < 11 ?
                         <WarningDialog
                             warningModalRef={warningDialogRef}
                             title="Not enough starters"
                             message="Your team doesn’t have enough starters  for one or more of the positions in the 4-3-3 formation" /> :
-                        !data?.teamData?.length ?
+                        !data?.searchedData?.length ?
                             <WarningDialog
                                 warningModalRef={warningDialogRef}
                                 title="No player data found"

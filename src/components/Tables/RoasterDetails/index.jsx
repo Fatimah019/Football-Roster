@@ -21,7 +21,9 @@ const RoasterDetailsTable = () => {
     const [playerIndex, setPlayerIndex] = useState(null)
 
     useEffect(() => {
-        searchData.setSearchedData(data?.teamData)
+        if (data && data?.teamData && searchData?.searchedData.length === 0) {
+            searchData.setSearchedData(data?.teamData)
+        }
     }, [data?.teamData])
 
     const deletetPlayer = () => {
@@ -34,8 +36,8 @@ const RoasterDetailsTable = () => {
             <PlayerEditDialog
                 playerEditModalRef={playerEditModalDialogRef}
                 data={playerData}
-                updatedData={searchData?.searchedData}
-                setUpdatedData={searchData.setSearchedData}
+                // updatedData={searchData?.searchedData}
+                // setUpdatedData={searchData.setSearchedData}
                 id={playerIndex}
             />
             <ConfirmationDialog

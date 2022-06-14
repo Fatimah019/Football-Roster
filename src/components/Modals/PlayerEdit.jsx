@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppButton from "../Button";
 import AppModal from ".";
 import styles from "./styles/playeredit.module.css"
 import AppInput from "../Input";
 import AppSelect from "../Select";
 import AppRadioButton from "../Radios";
+import { SearchContext } from "../../context/search";
 
-const PlayerEditDialog = ({ playerEditModalRef, data, id, updatedData = [], setUpdatedData = () => { } }) => {
+const PlayerEditDialog = ({ playerEditModalRef, data, id }) => {
     const [playerData, setPlayerData] = useState(data)
 
+    const { searchedData, setSearchedData } = useContext(SearchContext)
     const handleEditPlayer = () => {
         playerEditModalRef.current.hideModal()
         const newData =
-            updatedData?.map((item, index) => (index === Number(id)) ? { ...playerData } : item)
+            searchedData?.map((item, index) => (index === Number(id)) ? { ...playerData } : item)
 
-        setUpdatedData(newData)
+        setSearchedData(newData)
     }
 
     const handleEditInputChange = (e) => {
