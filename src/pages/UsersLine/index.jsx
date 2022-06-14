@@ -16,12 +16,12 @@ const UsersLine = () => {
     return (
         <>
             {
-                data?.teamData?.length && startersData?.length > 10 ?
+                data?.teamData?.length && startersData?.length > 11 ?
                     <WarningDialog
                         warningModalRef={warningDialogRef}
                         title="There are too many starters"
                         message="Your team has too many starters for one or more of the positions in the 4-3-3 formation." /> :
-                    data?.teamData?.length && startersData?.length < 10 ?
+                    data?.teamData?.length && startersData?.length < 11 ?
                         <WarningDialog
                             warningModalRef={warningDialogRef}
                             title="Not enough starters"
