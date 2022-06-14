@@ -23,6 +23,10 @@
   gap: 13px;
 }
 
+.roaster_details_edit svg {
+  cursor: pointer;
+}
+
 .roaster_details_edit svg path {
   fill: var(--text-headings);
   cursor: pointer;
@@ -38,8 +42,12 @@
   line-height: 24px;
   padding: 0;
   margin: 0;
+  display: flex;
 }
 
+.left_app_header .roaster_details_edit span br {
+  display: none;
+}
 .right_app_header {
   display: flex;
   align-items: center;
