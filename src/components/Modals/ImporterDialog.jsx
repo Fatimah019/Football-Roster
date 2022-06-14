@@ -17,6 +17,7 @@ const ImporterDialog = ({ importerModalRef }) => {
     const tableContext = useContext(TeamDataContext)
     const [loadedData, setLoadedData] = useState(null)
     const dataInfo = useContext(TeamDataContext)
+    const isValidData = isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected"
 
     const handleFileChange = (e) => {
         const [file] = e.target.files
@@ -35,15 +36,25 @@ const ImporterDialog = ({ importerModalRef }) => {
     useEffect(() => {
         setIsMissingData(checkForInvalidInput(tableContext?.loadedData, ""))
         // console.log(fileType, "filetype")
-    }, [tableContext?.loadedData, fileType])
 
+    }, [tableContext?.loadedData, fileType,])
+
+    useEffect(() => {
+        if (importerModalRef.current.hideModal()) {
+            setChosenFileName("No file selected")
+        }
+    }, [importerModalRef])
     console.log(isMissingData, "missing")
 
     const handleFileImport = (e) => {
         e.preventDefault();
         importerModalRef.current.hideModal()
         csvFileToArray(loadedData, tableContext?.setTeamData)
+
+
     };
+
+
 
     return <AppModal modalMaxWidth={styles.importer_modal_wrapper} ref={importerModalRef} modal_head modal_head_title="Importer">
         <div className={styles.importer_modal_body}>
@@ -67,21 +78,25 @@ const ImporterDialog = ({ importerModalRef }) => {
                     }
                 </div>
 
-                <div className={styles.importer_modal_body_file_summary}>
-                    <h3>File Summary</h3>
-                    <div className={styles.file_summary_table}>
-                        <FileSummaryTable />
+                {
+                    !isValidData && <div className={styles.importer_modal_body_file_summary}>
+                        <h3>File Summary</h3>
+                        <div className={styles.file_summary_table}>
+                            <FileSummaryTable />
+                        </div>
                     </div>
-                </div>
+                }
+
+
             </div>
 
             <div className={styles.importer_modal_body_bottom}>
                 <AppButton
                     onClick={(e) => handleFileImport(e)}
-                    button_textcolor={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected" ? "var(--text-disabled)" : "#fff"}
+                    button_textcolor={isValidData ? "var(--text-disabled)" : "#fff"}
                     button_text="Import"
-                    button_background={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected" ? "transparent" : "var(--primary-orange"}
-                    disabled={isMissingData || !tableContext?.loadedData?.length || choosenFileName === "No file selected"}
+                    button_background={isValidData ? "transparent" : "var(--primary-orange"}
+                    disabled={isValidData}
                 />
             </div>
         </div>

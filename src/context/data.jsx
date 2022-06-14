@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, memo } from "react";
 
 const TeamDataContext = createContext()
 
-const TeamDataProvider = ({ children }) => {
+const TeamDataProvider = memo(({ children }) => {
     const [teamData, setTeamData] = useState([])
     const [loadedData, setLoadedData] = useState(null)
 
@@ -11,7 +11,7 @@ const TeamDataProvider = ({ children }) => {
             {children}
         </TeamDataContext.Provider>
     )
-}
+})
 
 
 export { TeamDataContext, TeamDataProvider }

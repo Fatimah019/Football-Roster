@@ -4,58 +4,50 @@
   column-gap: 12px;
 }
 
-.radio_box:focus-within {
-  color: var(--primary-orange);
-}
-
-.radio_box input {
-  padding: 0;
-  margin: 0;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-  border: 1px solid var(--borders-default);
-  border-radius: 50%;
-  height: 16px;
-  width: 16px;
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  transform: translateY(-0.075em);
-}
-
-.radio_box input::before {
-  /* content: "";
-  width: 0.65em;
-  height: 0.65em;
-  border-radius: 50%;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out; */
-  /* box-shadow: inset 1em 1em var(--form-control-color); */
-  content: "";
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em white;
-  /* Windows High Contrast Mode */
-  /* background-color: var(--primary-orange); */
-}
-
-.radio_box input:checked::before {
-  transform: scale(1);
-  /* background-color: var(--primary-orange); */
-}
-
-/* .radio_box input:focus {
-  outline: max(2px, 0.15em) solid var(--primary-orange);
-  outline-offset: max(2px, 0.15em);
-} */
-
-.radio_box span {
+.radio_box label {
   color: var(--text-normal);
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+}
+
+.radio_box input {
+  display: none;
+}
+
+.radio_box input + label {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-normal);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.radio_box input + label span {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.radio_box input + label span {
+  background-color: transparent;
+  border: 1px solid var(--borders-default);
+}
+
+.radio_box input:checked + label span {
+  border: 4px solid var(--primary-orange);
+}
+
+.radio_box input + label span,
+.radio_box input:checked + label span {
+  -webkit-transition: border 0.4s linear;
+  -o-transition: border 0.4s linear;
+  -moz-transition: border 0.4s linear;
+  transition: border 0.4s linear;
 }

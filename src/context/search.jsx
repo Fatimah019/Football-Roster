@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, memo } from "react";
 
 const SearchContext = createContext()
 
-const SearchProvider = ({ children }) => {
+const SearchProvider = memo(({ children }) => {
     const [searchValue, setSearchValue] = useState("");
     const [searchedData, setSearchedData] = useState([])
 
@@ -11,6 +11,6 @@ const SearchProvider = ({ children }) => {
             {children}
         </SearchContext.Provider>
     )
-}
+})
 
 export { SearchContext, SearchProvider }

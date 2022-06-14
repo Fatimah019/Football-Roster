@@ -33,30 +33,35 @@ const PlayerEditDialog = ({ playerEditModalRef, data, id, updatedData = [], setU
             <div className={styles.playeredit_modal_body_top} >
                 <form>
                     <div className={styles.input_unequal_dual_div}>
-                        <AppInput name="playerName" value={playerData["Player Name"]} input_label="Player Name" onChange={handleEditInputChange} />
+                        <AppInput name="Player Name" value={playerData["Player Name"]} input_label="Player Name" onChange={handleEditInputChange} />
                         <AppInput name="Jersey Number" value={playerData["Jersey Number"]} input_label="Jersey Number" onChange={handleEditInputChange} />
                     </div>
                     <div className={styles.input_equal_dual_div}>
                         <AppInput name="Height" value={playerData?.Height} input_label="Height" onChange={handleEditInputChange} />
                         <AppInput name="Weight" value={playerData?.Weight} input_label="Weight" onChange={handleEditInputChange} />
                     </div>
-                    <AppSelect select_label="Nationality" value={playerData?.Nationality} onChange={handleEditInputChange} />
-                    <AppSelect select_label="Position" value={playerData?.Position} onChange={handleEditInputChange} />
+                    <AppSelect name={"Nationality"} select_label="Nationality" value={playerData?.Nationality} onSelectChange={handleEditInputChange} />
+                    <AppSelect name={"Position"} select_label="Position" value={playerData?.Position} onSelectChange={handleEditInputChange} />
 
                     <div className={styles.radio_inputs}>
                         <div className={styles.radio_label}>
                             <label>Starter</label>
                         </div>
-                        <div className={styles.radio_buttons}>
-                            <AppRadioButton radio_btn_name="starter" radio_input_name="No" value="No" checked="checked" />
-                            <AppRadioButton radio_btn_name="starter" radio_input_name="Yes" value="Yes" />
+                        <div className={styles.radio_buttons}  >
+                            <AppRadioButton id="No" radio_btn_name="No" value="No" radio_input_name="Starter" onChange={handleEditInputChange} checked={playerData?.Starter === "No"} />
+                            <AppRadioButton id="Yes" radio_btn_name="Yes" value="Yes" radio_input_name="Starter" onChange={handleEditInputChange} checked={playerData?.Starter === "Yes"} />
                         </div>
                     </div>
                 </form>
             </div>
             <div className={styles.player_edit_modal_body_bottom}>
-                <AppButton button_textcolor={"var(--text-disabled)"} button_text="Edit Player" button_background={"transparent"} onClick={handleEditPlayer} />
-                {/* <AppButton button_textcolor={"var(--text-headings)"} button_text="Edit Player" button_background={"var(--primary-orange)"} /> */}
+                <AppButton
+                    button_textcolor={Object.values(playerData).includes("") ? "var(--text-disabled)" : "var(--text-headings)"}
+                    button_text="Edit Player"
+                    button_background={Object.values(playerData).includes("") ? "transparent" : "var(--primary-orange)"}
+                    onClick={handleEditPlayer}
+                    disabled={Object.values(playerData).includes("")}
+                />
             </div>
         </div>
     </AppModal>

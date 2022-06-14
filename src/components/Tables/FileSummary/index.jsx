@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TeamDataContext } from "../../../context/data";
+import { checkForInvalidInput } from "../../../functions/fileCheck";
 import AppTable from "../../CustomTable";
 
 const data = [
@@ -10,9 +11,24 @@ const data = [
 
 const FileSummaryTable = () => {
     const loadedDataSummary = useContext(TeamDataContext)
+    // const [goalKeepersLength, setGoalKeepersLength] = useState(0)
 
-    console.log(loadedDataSummary, "loadedDataSummary")
-    console.log(loadedDataSummary?.loadedData?.length, "pppppp")
+
+    const fileLengthCheck = (teamKey, teamVal) => {
+        const data = loadedDataSummary?.loadedData?.filter(item => item[teamKey] === teamVal).length
+        // return setGoalKeepersLength(data)
+        return data
+    }
+
+    // useEffect(() => {
+    //     fileLengthCheck("Position", "Goalkeeper")
+    //     // setGoalKeepersLength(fileLengthCheck("Position", "Midfielder"))
+    // }, [loadedDataSummary?.loadedData])
+
+
+    // console.log(goalKeepersLength, "leg")
+
+
 
     return <AppTable
         tableData={
@@ -24,53 +40,37 @@ const FileSummaryTable = () => {
         columnsData={[
             {
                 Header: "Total Players",
-                accessor: "id",
+                accessor: "Total Players",
                 Cell: (data) => {
                     return loadedDataSummary?.loadedData?.length
                 },
             },
             {
                 Header: "Goalkeepers",
-                accessor: "id2",
+                accessor: "Goalkeepers",
                 Cell: (data) => {
-                    return (
-                        Number(data?.row?.id) +
-                        (data?.initialState?.pageIndex - 1) * 20 +
-                        1
-                    );
+                    return fileLengthCheck("Position", "Goalkeeper")
                 },
             },
             {
                 Header: "Defenders",
-                accessor: "id3",
+                accessor: "Defenders",
                 Cell: (data) => {
-                    return (
-                        Number(data?.row?.id) +
-                        (data?.initialState?.pageIndex - 1) * 20 +
-                        1
-                    );
+                    return fileLengthCheck("Position", "Defender")
                 },
             },
             {
                 Header: "Midfielders",
-                accessor: "id4",
+                accessor: "Midfielders",
                 Cell: (data) => {
-                    return (
-                        Number(data?.row?.id) +
-                        (data?.initialState?.pageIndex - 1) * 20 +
-                        1
-                    );
+                    return fileLengthCheck("Position", "Midfielder")
                 },
             },
             {
                 Header: "Forwards",
-                accessor: "id5",
+                accessor: "Forwards",
                 Cell: (data) => {
-                    return (
-                        Number(data?.row?.id) +
-                        (data?.initialState?.pageIndex - 1) * 20 +
-                        1
-                    );
+                    return fileLengthCheck("Position", "Forward")
                 },
             },
         ]}

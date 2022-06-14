@@ -7,7 +7,11 @@ const AppModal = forwardRef(({
     children,
     modal_head,
     modal_head_title,
-    modalMaxWidth
+    modalMaxWidth,
+    left,
+    right,
+    bottom,
+    top,
 }, ref) => {
     const [openModal, setOpenModal] = useState(false)
 
@@ -18,46 +22,11 @@ const AppModal = forwardRef(({
         }
     })
 
-    const handleClose = (event) => {
-        // if (ref.current && !ref.current.contains(event.target)) {
-        //     setOpenModal(false);
-        // }
-        setOpenModal(false);
-    };
-
-    // useEffect(() => {
-    //     if (ref.current) document.addEventListener("click", handleClose);
-    //     return () => {
-    //         document.removeEventListener("click", handleClose);
-    //     };
-    // }, [openModal, ref]);
-
-    // const hanldeCloseModaLFromOutside = () => {
-    //     if (openModal && ref.current) {
-    //         // onClose();
-    //         console.log("hello")
-    //         setOpenModal(false)
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     // if (openModal && ref.current && !ref.current.contains)
-    //     // document.addEventListener("click", hanldeCloseModaLFromOutside);
-    //     // return () => {
-    //     //     document.removeEventListener("click", hanldeCloseModaLFromOutside);
-    //     // };
-    //     if (openModal) {
-    //         document.body.style.overflow = "hidden";
-    //     } else {
-    //         document.body.style.overflow = "auto";
-    //     }
-    // }, [openModal]);
-
     if (openModal) {
         return ReactDOM.createPortal(
-            <div className={styles.modal_wrapper}>
+            <div className={styles.modal_wrapper} onClick={() => setOpenModal(false)} style={{ left: left, right: right, top: top, bottom: bottom }}>
                 <div className={styles.modal_backdrop}>
-                    <div className={`${styles.modal_box} ${modalMaxWidth}`}>
+                    <div className={`${styles.modal_box} ${modalMaxWidth}`} onClick={e => e.stopPropagation()}>
                         {
                             modal_head && <div className={styles.modal_head}>
                                 <h3>{modal_head_title}</h3>

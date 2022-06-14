@@ -1,10 +1,11 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { TeamDataContext } from "../../context/data";
 import PlayerSearch from "../AppSearch";
 import AppButton from "../Button";
 import ImporterDialog from "../Modals/ImporterDialog";
 import styles from "./header.module.css";
+import { ReactComponent as PenEditIcon } from "../../assets/icons/edit_icon.svg"
 
 const Header = () => {
     const importerModalRef = useRef()
@@ -12,6 +13,32 @@ const Header = () => {
     const openImporterModal = () => {
         importerModalRef.current.displayModal()
     }
+
+    const [teamNameVal, setTeamNameVal] = useState("My Team");
+    const [showPen, setShowPen] = useState(true);
+
+    const onChangeTeamName = evt => {
+        setTeamNameVal(evt.target.value);
+        setShowPen(false)
+    };
+
+    const handleEditPenClickable = () => {
+        if (teamNameVal === "My Team") {
+            setShowPen(true)
+        }
+        else {
+            setShowPen(false)
+        }
+    }
+
+    // useEffect(() => {
+    //     if (teamNameVal === "My Team") {
+    //         setShowPen(true)
+    //     }
+    //     else {
+    //         setShowPen(false)
+    //     }
+    // }, [teamNameVal])
 
     const data = useContext(TeamDataContext)
     const dataLength = data?.teamData?.length
@@ -22,7 +49,18 @@ const Header = () => {
                 <div className={styles.left_app_header}>
                     <span>Roster Details</span>
                     <div className={styles.roaster_details_edit}>
-                        <input type="text" value="My Team" />
+                        <input type="text"
+                            value={teamNameVal}
+                            onChange={onChangeTeamName}
+                            onMouseOver={() => setShowPen(true)}
+                            onMouseLeave={() => teamNameVal === "My Team" && setShowPen(true)}
+                            placeholder="My Team"
+                        />
+                        {
+                            showPen && <PenEditIcon onClick={() => {
+                                setShowPen(false)
+                            }} />
+                        }
                     </div>
                 </div>
                 {
