@@ -18,8 +18,8 @@ const PlayerSearch = ({ data }) => {
         else {
             setShowCancelSearchBtn(true)
             searchData?.setSearchedData(data?.filter((d) => {
-                return d["Player Name"]?.includes(searchData?.searchValue)
-                    || d?.Position?.includes(searchData?.searchValue)
+                return d["Player Name"].toLowerCase()?.includes(searchData?.searchValue)
+                    || d?.Position?.toLowerCase()?.includes(searchData?.searchValue)
             }))
         }
     };
