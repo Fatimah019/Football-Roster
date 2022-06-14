@@ -12,6 +12,7 @@ const AppModal = forwardRef(({
     right,
     bottom,
     top,
+    stopPropagation
 }, ref) => {
     const [openModal, setOpenModal] = useState(false)
 
@@ -22,9 +23,19 @@ const AppModal = forwardRef(({
         }
     })
 
+    useEffect(() => {
+        if (openModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [openModal])
+
     if (openModal) {
         return ReactDOM.createPortal(
-            <div className={styles.modal_wrapper} onClick={() => setOpenModal(false)} style={{ left: left, right: right, top: top, bottom: bottom }}>
+            <div className={styles.modal_wrapper}
+                onClick={() => !stopPropagation && setOpenModal(false)}
+                style={{ left: left, right: right, top: top, bottom: bottom }}>
                 <div className={styles.modal_backdrop}>
                     <div className={`${styles.modal_box} ${modalMaxWidth}`} onClick={e => e.stopPropagation()}>
                         {

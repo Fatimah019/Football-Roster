@@ -15,6 +15,7 @@ const UsersLine = () => {
 
     return (
         <>
+            <TeamField data={data?.teamData} dataLength={startersData?.length} />
             {
                 data?.teamData?.length && startersData?.length > 11 ?
                     <WarningDialog
@@ -30,8 +31,7 @@ const UsersLine = () => {
                             <WarningDialog
                                 warningModalRef={warningDialogRef}
                                 title="No player data found"
-                                message="Please importer your roster first" /> :
-                            <TeamField data={data?.teamData} dataLength={startersData?.length} />
+                                message="Please importer your roster first" /> : ""
 
             }
 

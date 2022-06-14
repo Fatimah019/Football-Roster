@@ -1,39 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { TeamDataContext } from "../../../context/data";
-import { checkForInvalidInput } from "../../../functions/fileCheck";
 import AppTable from "../../CustomTable";
 
-const data = [
+const defaultData = [
     {
-        name: "hello"
-    }
+        "default": 0
+    },
 ]
 
 const FileSummaryTable = () => {
     const loadedDataSummary = useContext(TeamDataContext)
-    // const [goalKeepersLength, setGoalKeepersLength] = useState(0)
-
 
     const fileLengthCheck = (teamKey, teamVal) => {
-        const data = loadedDataSummary?.loadedData?.filter(item => item[teamKey] === teamVal).length
-        // return setGoalKeepersLength(data)
+        const data = loadedDataSummary?.loadedData?.filter(item => item[teamKey] === teamVal)?.length
         return data
     }
 
-    // useEffect(() => {
-    //     fileLengthCheck("Position", "Goalkeeper")
-    //     // setGoalKeepersLength(fileLengthCheck("Position", "Midfielder"))
-    // }, [loadedDataSummary?.loadedData])
-
-
-    // console.log(goalKeepersLength, "leg")
-
-
-
     return <AppTable
         tableData={
-            data &&
-            data?.map(
+            defaultData &&
+            defaultData?.map(
                 (data) => data
             )
         }

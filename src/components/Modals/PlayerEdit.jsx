@@ -40,8 +40,19 @@ const PlayerEditDialog = ({ playerEditModalRef, data, id, updatedData = [], setU
                         <AppInput name="Height" value={playerData?.Height} input_label="Height" onChange={handleEditInputChange} />
                         <AppInput name="Weight" value={playerData?.Weight} input_label="Weight" onChange={handleEditInputChange} />
                     </div>
-                    <AppSelect name={"Nationality"} select_label="Nationality" value={playerData?.Nationality} onSelectChange={handleEditInputChange} />
-                    <AppSelect name={"Position"} select_label="Position" value={playerData?.Position} onSelectChange={handleEditInputChange} />
+                    <AppSelect name={"Nationality"}
+                        select_label="Nationality"
+                        value={playerData?.Nationality}
+                        onSelectChange={handleEditInputChange}
+                        statusOptions={["Brazilian", "Nigerian"]}
+                    />
+                    <AppSelect
+                        name={"Position"}
+                        select_label="Position"
+                        value={playerData?.Position}
+                        onSelectChange={handleEditInputChange}
+                        statusOptions={["Goalkeeper", "Defender", "Forward", "Midfielder"]}
+                    />
 
                     <div className={styles.radio_inputs}>
                         <div className={styles.radio_label}>

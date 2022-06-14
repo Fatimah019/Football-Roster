@@ -10,9 +10,6 @@
   height: 540px;
 }
 
-.importer_modal_body .importer_modal_body_top {
-}
-
 .importer_modal_body .importer_modal_body_top h3 {
   color: var(--text-headings);
   font-weight: 500;

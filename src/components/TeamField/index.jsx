@@ -8,19 +8,19 @@ const TeamField = ({ data, dataLength }) => {
     const preLoadedInfo = data?.find((team_member) => team_member?.Position === "Goalkeeper" && team_member?.Starter === "Yes")
 
     const [playerDetail, setPlayerDetail] = useState({
-        name: preLoadedInfo["Player Name"],
-        jersey: preLoadedInfo["Jersey Number"],
+        name: preLoadedInfo && preLoadedInfo["Player Name"],
+        jersey: preLoadedInfo && preLoadedInfo["Jersey Number"],
         position: preLoadedInfo?.Position,
-        playerImage: preLoadedInfo["Player Image"],
+        playerImage: preLoadedInfo && preLoadedInfo["Player Image"],
         height: preLoadedInfo?.Height,
         weight: preLoadedInfo?.Weight,
         nationality: preLoadedInfo?.Nationality,
-        flagImage: preLoadedInfo["Flag Image"],
+        flagImage: preLoadedInfo && preLoadedInfo["Flag Image"],
         appearances: preLoadedInfo?.Appearances,
-        minsPlayed: preLoadedInfo["Minutes Played"],
-        goals: preLoadedInfo["Goals "],
+        minsPlayed: preLoadedInfo && preLoadedInfo["Minutes Played"],
+        goals: preLoadedInfo && preLoadedInfo["Goals "],
         assists: preLoadedInfo?.Assists,
-        cleanSheet: preLoadedInfo["Clean Sheets"],
+        cleanSheet: preLoadedInfo && preLoadedInfo["Clean Sheets"],
         saves: preLoadedInfo?.Saves
     })
 
@@ -32,19 +32,19 @@ const TeamField = ({ data, dataLength }) => {
                     player_number={player["Jersey Number"]}
                     onClick={() => {
                         setPlayerDetail({
-                            name: player["Player Name"],
-                            jersey: player["Jersey Number"],
+                            name: player && player["Player Name"],
+                            jersey: player && player["Jersey Number"],
                             position: player?.Position,
-                            playerImage: player["Player Image"],
+                            playerImage: player && player["Player Image"],
                             height: player?.Height,
                             weight: player?.Weight,
                             nationality: player?.Nationality,
-                            flagImage: player["Flag Image"],
+                            flagImage: player && player["Flag Image"],
                             appearances: player?.Appearances,
-                            minsPlayed: player["Minutes Played"],
-                            goals: player["Goals "],
+                            minsPlayed: player && player["Minutes Played"],
+                            goals: player && player["Goals "],
                             assists: player?.Assists,
-                            cleanSheet: player["Clean Sheets"],
+                            cleanSheet: player && player["Clean Sheets"],
                             saves: player?.Saves
                         })
                     }}
@@ -54,31 +54,38 @@ const TeamField = ({ data, dataLength }) => {
 
     return <div className={styles.formation_view_wrapper}>
         <div className={styles.field_wrapper}>
-            <div className={styles.positions}>
-                {
-                    dataLength === 11 &&
-                    mapPlayerPosition("Goalkeeper")
-                }
 
-            </div>
-            <div className={styles.positions}>
-                {
-                    dataLength === 11 &&
-                    mapPlayerPosition("Defender")
-                }
-            </div>
-            <div className={styles.positions}>
-                {
-                    dataLength === 11 &&
-                    mapPlayerPosition("Midfielder")
-                }
-            </div>
-            <div className={styles.positions}>
-                {
-                    dataLength === 11 &&
-                    mapPlayerPosition("Forward")
-                }
-            </div>
+            {
+                <div className={styles.field_wrapper_inner}>
+                    <div className={styles.positions}>
+                        {
+                            dataLength === 11 &&
+                            mapPlayerPosition("Goalkeeper")
+                        }
+
+                    </div>
+                    <div className={styles.positions}>
+                        {
+                            dataLength === 11 &&
+                            mapPlayerPosition("Defender")
+                        }
+                    </div>
+                    <div className={styles.positions}>
+                        {
+                            dataLength === 11 &&
+                            mapPlayerPosition("Midfielder")
+                        }
+                    </div>
+                    <div className={styles.positions}>
+
+                        {
+                            dataLength === 11 &&
+                            mapPlayerPosition("Forward")
+                        }
+                    </div>
+                </div>
+            }
+
         </div>
         <div className={styles.player_info}>
             {

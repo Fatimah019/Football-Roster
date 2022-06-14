@@ -9,7 +9,7 @@ const AppTable = ({ columnsData,
     tableTotalCount,
     currentPage,
 }) => {
-    const columns = useMemo(() => columnsData, []);
+    const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);
     const tableInstance = useTable(
         {
@@ -46,32 +46,33 @@ const AppTable = ({ columnsData,
                 ))}
             </thead>
 
-            {!data.length ? (
-                <tbody>
-                    <tr className={styles.table_empty_content}>
-                        <td colSpan="100%"><p>You do not have any players on the roster</p><span onClick={openImporterModal}>Import Team</span></td>
-                    </tr>
-                </tbody>
-            ) : (
-                <tbody {...getTableBodyProps()} className={styles.table_body}>
-                    {page?.map((row, index) => {
-                        prepareRow(row);
-                        return (
-                            <tr {...row?.getRowProps()} key={index}>
-                                {row?.cells?.map((cell, index) => {
-                                    return (
-                                        <td {...cell?.getCellProps()} key={index}>
-                                            {!cell?.render("Cell")
-                                                ? null
-                                                : cell?.render("Cell")}
-                                        </td>
-                                    );
-                                })}
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            )}
+            {
+                !data.length ? (
+                    <tbody>
+                        <tr className={styles.table_empty_content}>
+                            <td colSpan="100%"><p>You do not have any players on the roster</p><span onClick={openImporterModal}>Import Team</span></td>
+                        </tr>
+                    </tbody>
+                ) : (
+                    <tbody {...getTableBodyProps()} className={styles.table_body}>
+                        {page?.map((row, index) => {
+                            prepareRow(row);
+                            return (
+                                <tr {...row?.getRowProps()} key={index}>
+                                    {row?.cells?.map((cell, index) => {
+                                        return (
+                                            <td {...cell?.getCellProps()} key={index}>
+                                                {!cell?.render("Cell")
+                                                    ? null
+                                                    : cell?.render("Cell")}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                )}
         </table>
     </div>
 

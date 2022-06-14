@@ -1,19 +1,20 @@
 .modal_wrapper {
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  right: 4%;
+  left: 4%;
   z-index: 55555;
+  margin: auto;
 }
 
 .modal_backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  right: 4%;
+  left: 4%;
   bottom: 0;
   z-index: 100;
+  margin: auto;
 }
 
 .modal_box {

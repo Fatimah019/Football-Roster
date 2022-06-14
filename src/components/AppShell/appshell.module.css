@@ -12,6 +12,7 @@
   padding: 40px;
   flex: 1;
   margin-left: 60px;
+  position: relative;
 }
 
 .app main .content {
@@ -20,7 +21,7 @@
   padding: 13px;
   border-radius: 8px;
   min-height: 605px;
-  max-height: 620px;
+  width: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;

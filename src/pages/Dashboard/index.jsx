@@ -3,7 +3,7 @@ import RoasterDetailsTable from "../../components/Tables/RoasterDetails";
 
 const Dashboard = () => {
     return (
-        <div style={{ color: "#fff" }}>
+        <div>
             <RoasterDetailsTable />
         </div>
     );

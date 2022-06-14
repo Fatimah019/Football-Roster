@@ -7,7 +7,6 @@ import { Navigate } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-      {/* <AppShell /> */}
       <Routes>
         <Route path="/" element={<AppShell />}>
           <Route path="dashboard" element={<Dashboard />} />

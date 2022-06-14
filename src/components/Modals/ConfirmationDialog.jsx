@@ -3,7 +3,7 @@ import AppButton from "../Button";
 import AppModal from ".";
 import styles from "./styles/confirmationDialog.module.css"
 
-const ConfirmationDialog = ({ confirmationModalRef }) => {
+const ConfirmationDialog = ({ confirmationModalRef, handleDelete }) => {
     return <AppModal
         modalMaxWidth={styles.confirmation_modal_wrapper}
         ref={confirmationModalRef}
@@ -27,7 +27,9 @@ const ConfirmationDialog = ({ confirmationModalRef }) => {
                 <AppButton
                     button_textcolor={"var(--text-headings)"}
                     button_text="Delete"
-                    button_background={"var(--primary-red)"} />
+                    button_background={"var(--primary-red)"}
+                    onClick={handleDelete}
+                />
             </div>
         </div>
     </AppModal>

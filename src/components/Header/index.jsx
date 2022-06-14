@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect } from "react";
+import React, { useRef, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { TeamDataContext } from "../../context/data";
 import PlayerSearch from "../AppSearch";
@@ -10,6 +10,7 @@ import { ReactComponent as PenEditIcon } from "../../assets/icons/edit_icon.svg"
 const Header = () => {
     const importerModalRef = useRef()
     const location = useLocation()
+
     const openImporterModal = () => {
         importerModalRef.current.displayModal()
     }
@@ -22,24 +23,6 @@ const Header = () => {
         setShowPen(false)
     };
 
-    const handleEditPenClickable = () => {
-        if (teamNameVal === "My Team") {
-            setShowPen(true)
-        }
-        else {
-            setShowPen(false)
-        }
-    }
-
-    // useEffect(() => {
-    //     if (teamNameVal === "My Team") {
-    //         setShowPen(true)
-    //     }
-    //     else {
-    //         setShowPen(false)
-    //     }
-    // }, [teamNameVal])
-
     const data = useContext(TeamDataContext)
     const dataLength = data?.teamData?.length
     return (
@@ -48,18 +31,28 @@ const Header = () => {
             <header className={styles.app_header}>
                 <div className={styles.left_app_header}>
                     <span>Roster Details</span>
-                    <div className={styles.roaster_details_edit}>
-                        <input type="text"
+                    <div
+                        className={styles.roaster_details_edit}
+                        onMouseOver={() => setShowPen(true)}
+                        onMouseLeave={() => setShowPen(false)}
+
+                    >
+                        <span
+                            onChange={onChangeTeamName}
+                            contentEditable
+                            role="textbox"
+                        >
+                            {teamNameVal}
+                        </span>
+                        {/* <input type="text"
                             value={teamNameVal}
                             onChange={onChangeTeamName}
                             onMouseOver={() => setShowPen(true)}
                             onMouseLeave={() => teamNameVal === "My Team" && setShowPen(true)}
                             placeholder="My Team"
-                        />
+                        /> */}
                         {
-                            showPen && <PenEditIcon onClick={() => {
-                                setShowPen(false)
-                            }} />
+                            showPen && <PenEditIcon />
                         }
                     </div>
                 </div>
@@ -76,8 +69,8 @@ const Header = () => {
                         </div>
                 }
 
-            </header>
-        </div>
+            </header >
+        </div >
 
     );
 }

@@ -24,12 +24,9 @@ const RoasterDetailsTable = () => {
         searchData.setSearchedData(data?.teamData)
     }, [data?.teamData])
 
-    const deletetPlayer = (index) => {
-        confirmationModalDialogRef.current.displayModal()
-        return searchData?.searchedData?.slice(0, index)
-        //     updatedData?.map((item, index) => (index === Number(id)) ? { ...playerData } : item)
-
-        // setUpdatedData(newData)
+    const deletetPlayer = () => {
+        confirmationModalDialogRef.current.hideModal()
+        return searchData?.searchedData?.filter(d => d.id === Number(playerIndex))
     }
 
     return useMemo(() => {
@@ -43,6 +40,7 @@ const RoasterDetailsTable = () => {
             />
             <ConfirmationDialog
                 confirmationModalRef={confirmationModalDialogRef}
+                handleDelete={deletetPlayer}
             />
             <AppTable
                 tableData={
@@ -140,7 +138,6 @@ const RoasterDetailsTable = () => {
                                         onClick={() => {
                                             confirmationModalDialogRef.current.displayModal()
                                             setPlayerIndex(data.row.id)
-                                            // deletetPlayer(Number(data.row.id))
                                         }}
                                     />
                                 </AppActionMenu>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../../context/search";
 import AppButton from "../Button";
 import AppInput from "../Input";
@@ -10,28 +10,38 @@ const PlayerSearch = ({ data }) => {
 
     const onSearchTeam = (e) => {
         e.preventDefault()
-        searchData?.setSearchedData(data?.filter((d) => {
-            return d["Player Name"]?.includes(searchData?.searchValue)
-                || d?.Position?.includes(searchData?.searchValue)
-        }))
-
-        setShowCancelSearchBtn(true)
+        if (showCancelSearchBtn) {
+            searchData?.setSearchValue("")
+            setShowCancelSearchBtn(false)
+            searchData?.setSearchedData(data)
+        }
+        else {
+            setShowCancelSearchBtn(true)
+            searchData?.setSearchedData(data?.filter((d) => {
+                return d["Player Name"]?.includes(searchData?.searchValue)
+                    || d?.Position?.includes(searchData?.searchValue)
+            }))
+        }
     };
 
     const handleSearchChange = (e) => {
         e.preventDefault();
         searchData?.setSearchValue(e.target.value);
 
-        // if (!searchData?.searchValue?.length) {
-        //     setShowCancelSearchBtn(false)
-        // }
-
-        // else {
-        //     setShowCancelSearchBtn(true)
-        // }
+        if (!showCancelSearchBtn && searchData?.searchValue?.length) {
+            searchData?.setSearchedData(data)
+        }
     };
-    return <form onSubmit={onSearchTeam
-    }>
+
+    useEffect(() => {
+        searchData?.searchValue
+            && searchData?.searchValue?.length > 1
+            && setShowCancelSearchBtn(false)
+
+    }, [searchData?.searchValue])
+
+
+    return <form onSubmit={onSearchTeam}>
         <AppInput
             type="text"
             placeholder="Find Player"
