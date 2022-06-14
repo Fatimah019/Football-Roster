@@ -22,7 +22,6 @@
   border-radius: 8px;
   min-height: 605px;
   width: 100%;
-  overflow: auto;
   display: flex;
   flex-direction: column;
 }

@@ -27,19 +27,28 @@ const PlayerSearch = ({ data }) => {
     const handleSearchChange = (e) => {
         e.preventDefault();
         searchData?.setSearchValue(e.target.value);
-
-        if (!showCancelSearchBtn && searchData?.searchValue?.length) {
-            searchData?.setSearchedData(data)
-        }
     };
 
     useEffect(() => {
         searchData?.searchValue
-            && searchData?.searchValue?.length > 1
             && setShowCancelSearchBtn(false)
-
     }, [searchData?.searchValue])
 
+    useEffect(() => {
+        const keyEscapeHandler = event => {
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                searchData?.setSearchValue("")
+                setShowCancelSearchBtn(false)
+                searchData?.setSearchedData(data)
+            }
+        };
+
+        document.addEventListener('keydown', keyEscapeHandler);
+        return () => {
+            document.removeEventListener('keydown', keyEscapeHandler);
+        };
+    }, [data, searchData]);
 
     return <form onSubmit={onSearchTeam}>
         <AppInput

@@ -7,16 +7,24 @@ const cx = classNames.bind(styles);
 const AppFilePicker = ({ fileName = "No file selected", inValidFile, handleFileChange }) => {
     const fileRef = useRef()
     return (
-        <div className={cx({
-            file_picker: true,
-            error: inValidFile,
-        })}>
-            <span className={styles.file_name}>{fileName}</span>
-            <button onClick={() => fileRef.current.click()} className={cx({
-                file_picker_button: true,
-                error: inValidFile,
-            })}>Select File</button>
-
+        <>
+            <div
+                className={cx({
+                    file_picker: true,
+                    error: inValidFile,
+                })}
+            >
+                <span className={styles.file_name} role="textbox">{fileName}</span>
+                <button
+                    onClick={() => fileRef.current.click()}
+                    className={cx({
+                        file_picker_button: true,
+                        error: inValidFile,
+                    })}
+                >
+                    Select File
+                </button>
+            </div>
             <form>
                 <input
                     type="file"
@@ -26,7 +34,8 @@ const AppFilePicker = ({ fileName = "No file selected", inValidFile, handleFileC
                     hidden
                 />
             </form>
-        </div>
+        </>
+
     );
 }
 

@@ -1,43 +1,46 @@
 .file_picker {
-  height: 44px;
+  min-height: 44px;
   width: 300px;
   min-width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  gap: 10px;
+  column-gap: 10px;
   border: 1px solid var(--borders-default);
+  padding: 0px 20px;
 }
 
 .file_picker.error {
   border: 1px solid var(--primary-red);
 }
+
 .file_name {
   font-weight: 400;
-  padding: 12px 16px 11px;
-}
-
-.file_name,
-.file_picker_button {
-  background-color: transparent;
-  border: none;
-  outline: none;
   color: var(--text-normal);
   font-size: 14px;
   line-height: 21px;
+  inline-size: 65%;
+  overflow-wrap: break-word;
 }
 
 .file_picker_button {
   font-weight: 500;
   cursor: pointer;
-  padding: 12px 20px 11px;
+  padding: 12px 0px 11px 20px;
+  height: 100%;
   border-radius: 8px 0px 0px 8px;
+  border: none;
   border-left: 1px solid var(--borders-default);
+  outline: none;
+  color: var(--text-normal);
+  font-size: 14px;
+  line-height: 21px;
+  background-color: transparent;
+  inline-size: 35%;
+  overflow-wrap: normal;
 }
-.file_picker_button.valid {
-  border-left: 1px solid var(--borders-default);
-}
+
 .file_picker_button.error {
   border-left: 1px solid var(--primary-red);
 }

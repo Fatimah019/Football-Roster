@@ -146,7 +146,7 @@ const RoasterDetailsTable = () => {
                     }
                 ]}
             /></>
-    }, [playerData, playerIndex, searchData?.searchedData, searchData.setSearchedData])
+    }, [playerData, playerIndex, searchData?.searchedData])
 }
 
 export default RoasterDetailsTable

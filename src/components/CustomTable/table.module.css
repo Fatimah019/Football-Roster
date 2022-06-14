@@ -1,8 +1,6 @@
 .table_container {
   position: relative;
   height: auto;
-  overflow-x: auto;
-  overflow-y: auto;
   width: 100%;
 }
 
