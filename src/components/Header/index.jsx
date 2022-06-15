@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { TeamDataContext } from "../../context/data";
+import { TeamDataContext } from "../../context";
 import PlayerSearch from "../AppSearch";
 import AppButton from "../Button";
 import ImporterDialog from "../Modals/ImporterDialog";
@@ -23,8 +23,8 @@ const Header = () => {
         setShowPen(false)
     };
 
-    const data = useContext(TeamDataContext)
-    const dataLength = data?.teamData?.length
+    const { teamData } = useContext(TeamDataContext)
+    const dataLength = teamData?.length
     return (
         <div>
             <ImporterDialog importerModalRef={importerModalRef} />
@@ -51,7 +51,7 @@ const Header = () => {
                 {
                     location.pathname !== "/roster-table" ? null :
                         <div className={styles.right_app_header}>
-                            <PlayerSearch data={data?.teamData} />
+                            <PlayerSearch data={teamData} />
                             <AppButton
                                 button_text={`${dataLength ? "Re-Import Team" : "Import Team"}`}
                                 button_background={`${dataLength ? "transparent" : "var(--primary-orange)"}`}

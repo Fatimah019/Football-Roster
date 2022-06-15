@@ -1,46 +1,47 @@
 import React, { useContext, useEffect, useState } from "react";
-import { SearchContext } from "../../context/search";
+import { TeamDataContext } from "../../context";
 import AppButton from "../Button";
 import AppInput from "../Input";
 import { ReactComponent as CloseSearchIcon } from "../../assets/icons/close.svg";
 
 const PlayerSearch = ({ data }) => {
-    const searchData = useContext(SearchContext)
+    const { setSearchedData, setSearchValue, searchValue
+    } = useContext(TeamDataContext)
     const [showCancelSearchBtn, setShowCancelSearchBtn] = useState(false)
 
     const onSearchTeam = (e) => {
         e.preventDefault()
         if (showCancelSearchBtn) {
-            searchData?.setSearchValue("")
+            setSearchValue("")
             setShowCancelSearchBtn(false)
-            searchData?.setSearchedData(data)
+            setSearchedData(data)
         }
         else {
             setShowCancelSearchBtn(true)
-            searchData?.setSearchedData(data?.filter((d) => {
-                return d["Player Name"].toLowerCase()?.includes(searchData?.searchValue)
-                    || d?.Position?.toLowerCase()?.includes(searchData?.searchValue)
+            setSearchedData(data?.filter((d) => {
+                return d["Player Name"].toLowerCase()?.includes(searchValue)
+                    || d?.Position?.toLowerCase()?.includes(searchValue)
             }))
         }
     };
 
     const handleSearchChange = (e) => {
         e.preventDefault();
-        searchData?.setSearchValue(e.target.value);
+        setSearchValue(e.target.value);
     };
 
     useEffect(() => {
-        searchData?.searchValue
+        searchValue
             && setShowCancelSearchBtn(false)
-    }, [searchData?.searchValue])
+    }, [searchValue])
 
     useEffect(() => {
         const keyEscapeHandler = event => {
             if (event.key === 'Escape') {
                 event.preventDefault();
-                searchData?.setSearchValue("")
+                setSearchValue("")
                 setShowCancelSearchBtn(false)
-                searchData?.setSearchedData(data)
+                setSearchedData(data)
             }
         };
 
@@ -48,14 +49,14 @@ const PlayerSearch = ({ data }) => {
         return () => {
             document.removeEventListener('keydown', keyEscapeHandler);
         };
-    }, [data, searchData]);
+    }, [data, setSearchValue, setSearchedData]);
 
     return <form onSubmit={onSearchTeam}>
         <AppInput
             type="text"
             placeholder="Find Player"
             onChange={handleSearchChange}
-            value={searchData?.searchValue}
+            value={searchValue}
             input_icon
             search_end_text={<AppButton
                 button_type="submit"
@@ -63,7 +64,7 @@ const PlayerSearch = ({ data }) => {
                 padding="0"
                 button_background="transparent"
                 button_textcolor="var(--primary-orange)"
-                disabled={!searchData?.searchValue?.length}
+                disabled={!searchValue?.length}
             />}
             handleSearch={onSearchTeam}
         />

@@ -1,9 +1,9 @@
-export const csvFileToArray = (string, setFileToArray) => {
-  string = string.replaceAll('"', "");
-  string = string.replaceAll("\r", "");
+export const csvFileToArray = (item, setFileToArray) => {
+  item = item.replaceAll('"', "");
+  item = item.replaceAll("\r", "");
 
-  const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
-  const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+  const csvHeader = item.slice(0, item.indexOf("\n")).split(",");
+  const csvRows = item.slice(item.indexOf("\n") + 1).split("\n");
 
   const arraydata = csvRows.map((i) => {
     const values = i.split(",");

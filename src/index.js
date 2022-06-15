@@ -3,16 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { TeamDataProvider } from "./context/data";
-import { SearchProvider } from "./context/search";
+import { TeamDataProvider } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <TeamDataProvider>
-      <SearchProvider>
-        <App />
-      </SearchProvider>
+      <App />
     </TeamDataProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TeamDataContext } from "../../../context/data";
+import { TeamDataContext } from "../../../context";
 import AppTable from "../../CustomTable";
 
 const defaultData = [

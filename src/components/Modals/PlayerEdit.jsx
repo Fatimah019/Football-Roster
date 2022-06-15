@@ -5,12 +5,13 @@ import styles from "./styles/playeredit.module.css"
 import AppInput from "../Input";
 import AppSelect from "../Select";
 import AppRadioButton from "../Radios";
-import { SearchContext } from "../../context/search";
+import { TeamDataContext } from "../../context";
+
 
 const PlayerEditDialog = ({ playerEditModalRef, data, id }) => {
     const [playerData, setPlayerData] = useState(data)
+    const { searchedData, setSearchedData } = useContext(TeamDataContext)
 
-    const { searchedData, setSearchedData } = useContext(SearchContext)
     const handleEditPlayer = () => {
         playerEditModalRef.current.hideModal()
         const newData =

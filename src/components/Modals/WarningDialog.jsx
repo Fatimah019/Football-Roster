@@ -7,10 +7,6 @@ const WarningDialog = ({ warningModalRef, title, message }) => {
     return <AppModal
         modalMaxWidth={styles.warningModalRef_modal_wrapper}
         ref={warningModalRef}
-        top="10%"
-        right="5%"
-        left="5%"
-        bottom="10%"
     >
         <div className={styles.warning_modal_body}>
 
