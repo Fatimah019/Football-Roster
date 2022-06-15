@@ -1,5 +1,5 @@
 import React from "react";
-import AppModal from ".";
+import AppModal from "../Modals";
 import styles from "./styles/warningDialog.module.css"
 import { ReactComponent as WarningIcon } from "../../assets/icons/warning_icon.svg";
 

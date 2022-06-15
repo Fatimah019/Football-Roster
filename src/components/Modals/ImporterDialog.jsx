@@ -49,7 +49,11 @@ const ImporterDialog = ({ importerModalRef }) => {
         csvFileToArray(loadedTeamData, setTeamData)
     };
 
-    return <AppModal modalMaxWidth={styles.importer_modal_wrapper} ref={importerModalRef} modal_head modal_head_title="Importer">
+    return <AppModal
+        closeModalFromOutdide
+        modalMaxWidth={styles.importer_modal_wrapper}
+        ref={importerModalRef}
+        modal_head modal_head_title="Importer">
         <div className={styles.importer_modal_body}>
             <div className={styles.importer_modal_body_top} >
                 <h3>Roster File</h3>

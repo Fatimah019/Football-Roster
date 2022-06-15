@@ -8,6 +8,7 @@ const ConfirmationDialog = ({ confirmationModalRef, handleDelete }) => {
         modalMaxWidth={styles.confirmation_modal_wrapper}
         ref={confirmationModalRef}
         modal_head modal_head_title="Are you sure?"
+        closeModalFromOutdide
     >
         <div className={styles.confirmation_modal_body}>
             <div className={styles.confirmation_modal_body_top} >

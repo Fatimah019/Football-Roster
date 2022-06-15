@@ -31,7 +31,12 @@ const PlayerEditDialog = ({ playerEditModalRef, data, id }) => {
         setPlayerData(data);
     }, [data]);
 
-    return <AppModal ref={playerEditModalRef} modal_head modal_head_title="Edit Player" modalMaxWidth={styles.playeredit_modal_wrapper}>
+    return <AppModal
+        ref={playerEditModalRef}
+        modal_head modal_head_title="Edit Player"
+        modalMaxWidth={styles.playeredit_modal_wrapper}
+        closeModalFromOutdide
+    >
         <div className={styles.playeredit_modal_body}>
             <div className={styles.playeredit_modal_body_top} >
                 <form>

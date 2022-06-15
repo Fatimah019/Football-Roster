@@ -6,13 +6,12 @@ import { TeamDataContext } from "../../context";
 const FormationOverview = () => {
     const warningDialogRef = useRef()
 
-    const { searchedData
-    } = useContext(TeamDataContext)
+    const { searchedData } = useContext(TeamDataContext)
     const startersData = searchedData?.filter(starter => starter?.Starter === 'Yes');
 
     useEffect(() => {
         warningDialogRef?.current?.displayModal()
-    }, [warningDialogRef, searchedData])
+    }, [warningDialogRef, searchedData, startersData])
 
     return (
         <>

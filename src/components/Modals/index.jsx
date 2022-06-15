@@ -12,7 +12,7 @@ const AppModal = forwardRef(({
     right,
     bottom,
     top,
-    stopPropagation
+    closeModalFromOutdide
 }, ref) => {
     const [openModal, setOpenModal] = useState(false)
 
@@ -34,7 +34,7 @@ const AppModal = forwardRef(({
     if (openModal) {
         return ReactDOM.createPortal(
             <div className={styles.modal_wrapper}
-                onClick={() => !stopPropagation && setOpenModal(false)}
+                onClick={() => closeModalFromOutdide && setOpenModal(false)}
                 style={{ left: left, right: right, top: top, bottom: bottom }}>
                 <div className={styles.modal_backdrop}>
                     <div className={`${styles.modal_box} ${modalMaxWidth}`} onClick={e => e.stopPropagation()}>
