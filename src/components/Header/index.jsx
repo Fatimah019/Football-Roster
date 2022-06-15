@@ -49,7 +49,7 @@ const Header = () => {
                     </div>
                 </div>
                 {
-                    location.pathname !== "/dashboard" ? null :
+                    location.pathname !== "/roster-table" ? null :
                         <div className={styles.right_app_header}>
                             <PlayerSearch data={data?.teamData} />
                             <AppButton

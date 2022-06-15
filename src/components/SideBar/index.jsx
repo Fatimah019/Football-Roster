@@ -10,11 +10,11 @@ const cx = classNames.bind(styles);
 
 const navLinkData = [
     {
-        url: "/dashboard",
+        url: "/roster-table",
         icon: <Bars />
     },
     {
-        url: "/user-line",
+        url: "/formation-overview",
         icon: <UsersLine />
     }
 ]

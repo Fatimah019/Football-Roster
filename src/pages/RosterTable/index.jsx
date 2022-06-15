@@ -1,7 +1,7 @@
 import React from "react";
 import RoasterDetailsTable from "../../components/Tables/RoasterDetails";
 
-const Dashboard = () => {
+const RosterTable = () => {
     return (
         <div>
             <RoasterDetailsTable />
@@ -9,4 +9,4 @@ const Dashboard = () => {
     );
 }
 
-export default Dashboard;
+export default RosterTable;

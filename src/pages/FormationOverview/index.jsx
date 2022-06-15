@@ -3,7 +3,7 @@ import WarningDialog from "../../components/Modals/WarningDialog";
 import TeamField from "../../components/TeamField";
 import { SearchContext } from "../../context/search";
 
-const UsersLine = () => {
+const FormationOverview = () => {
     const warningDialogRef = useRef()
 
     const data = useContext(SearchContext)
@@ -39,5 +39,5 @@ const UsersLine = () => {
     );
 }
 
-export default UsersLine;
+export default FormationOverview;
 
