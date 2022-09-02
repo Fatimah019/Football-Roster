@@ -37,9 +37,11 @@ const AppModal = forwardRef(({
                 onClick={() => closeModalFromOutdide && setOpenModal(false)}
                 style={{ left: left, right: right, top: top, bottom: bottom }}>
                 <div className={styles.modal_backdrop}>
-                    <div className={`${styles.modal_box} ${modalMaxWidth}`} onClick={e => e.stopPropagation()}>
+                    <div className={`${styles.modal_box} ${modalMaxWidth}`}
+                        onClick={e => e.stopPropagation()}>
                         {
-                            modal_head && <div className={styles.modal_head}>
+                            modal_head &&
+                            <div className={styles.modal_head}>
                                 <h3>{modal_head_title}</h3>
                                 <CloseIcon onClick={() => setOpenModal(false)} />
                             </div>

@@ -3,31 +3,19 @@ import { TeamDataContext } from "../../context";
 import AppButton from "../Button";
 import AppInput from "../Input";
 import { ReactComponent as CloseSearchIcon } from "../../assets/icons/close.svg";
+import { checkForDuplicateData } from "../../functions/fileCheck";
 
 const PlayerSearch = ({ data }) => {
-    const { setSearchedData, setSearchValue, searchValue
-    } = useContext(TeamDataContext)
+    const { setSearchedData, setSearchValue, searchValue } = useContext(TeamDataContext)
     const [showCancelSearchBtn, setShowCancelSearchBtn] = useState(false)
 
     const onSearchTeam = (e) => {
         e.preventDefault()
-        if (showCancelSearchBtn) {
-            setSearchValue("")
-            setShowCancelSearchBtn(false)
-            setSearchedData(data)
-        }
-        else {
-            setShowCancelSearchBtn(true)
-            setSearchedData(data?.filter((d) => {
-                return d["Player Name"].toLowerCase()?.includes(searchValue)
-                    || d?.Position?.toLowerCase()?.includes(searchValue)
-            }))
-        }
-    };
 
-    const handleSearchChange = (e) => {
-        e.preventDefault();
-        setSearchValue(e.target.value);
+        setSearchedData(checkForDuplicateData(data)?.filter((d) => {
+            return d["Player Name"].toLowerCase()?.includes(searchValue)
+                || d?.Position?.toLowerCase()?.includes(searchValue)
+        }))
     };
 
     useEffect(() => {
@@ -41,7 +29,7 @@ const PlayerSearch = ({ data }) => {
                 event.preventDefault();
                 setSearchValue("")
                 setShowCancelSearchBtn(false)
-                setSearchedData(data)
+                setSearchedData(checkForDuplicateData(data))
             }
         };
 
@@ -55,7 +43,7 @@ const PlayerSearch = ({ data }) => {
         <AppInput
             type="text"
             placeholder="Find Player"
-            onChange={handleSearchChange}
+            onChange={(e) => setSearchValue(e.target.value)}
             value={searchValue}
             input_icon
             search_end_text={<AppButton

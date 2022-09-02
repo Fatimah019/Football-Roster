@@ -8,7 +8,7 @@ export const csvFileToArray = (item, setFileToArray) => {
   const arraydata = csvRows.map((i) => {
     const values = i.split(",");
     const obj = csvHeader.reduce((object, header, index) => {
-      const imageItemsLength = values.length - csvHeader?.length;
+      const imageItemsLength = values?.length - csvHeader?.length;
 
       if (header === "Player Image") {
         const imageItems = [values[1]];

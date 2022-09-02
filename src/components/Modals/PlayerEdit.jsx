@@ -6,18 +6,23 @@ import AppInput from "../Input";
 import AppSelect from "../Select";
 import AppRadioButton from "../Radios";
 import { TeamDataContext } from "../../context";
+import { checkForDuplicateData } from "../../functions/fileCheck";
 
 
 const PlayerEditDialog = ({ playerEditModalRef, data, id }) => {
     const [playerData, setPlayerData] = useState(data)
-    const { searchedData, setSearchedData } = useContext(TeamDataContext)
+    const { searchedData, setSearchedData, teamData, setTeamData } = useContext(TeamDataContext)
 
     const handleEditPlayer = () => {
         playerEditModalRef.current.hideModal()
+        const dataCheck = searchedData?.length ? searchedData : teamData
         const newData =
-            searchedData?.map((item, index) => (index === Number(id)) ? { ...playerData } : item)
+            dataCheck?.map((item, index) =>
+                (index === Number(id)) ? { ...playerData } : item)
 
-        setSearchedData(newData)
+        searchedData?.length ?
+            setSearchedData(checkForDuplicateData(newData)) :
+            setTeamData(checkForDuplicateData(newData))
     }
 
     const handleEditInputChange = (e) => {

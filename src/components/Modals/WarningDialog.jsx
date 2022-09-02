@@ -9,7 +9,6 @@ const WarningDialog = ({ warningModalRef, title, message }) => {
         ref={warningModalRef}
     >
         <div className={styles.warning_modal_body}>
-
             <div className={styles.warning_modal_body_top} >
                 <WarningIcon />
                 <h3>{title}</h3>

@@ -1,36 +1,36 @@
 .warningModalRef_modal_wrapper {
-  max-width: 389px;
+	max-width: 389px;
 }
 
 .warning_modal_body {
-  padding: 24px 0px;
-  padding-top: 24px;
+	padding: 24px 0px;
+	padding-top: 24px;
 }
 
 .warning_modal_body_top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
 }
 
 .warning_modal_body_top h3 {
-  margin: 0;
-  padding: 0;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  color: var(--text-headings);
+	margin: 0;
+	padding: 0;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	color: var(--text-headings);
 }
 
 .warning_modal_body_bottom {
-  margin-top: 8px;
-  text-align: center;
+	margin-top: 8px;
+	text-align: center;
 }
 
 .warning_modal_body_bottom p {
-  margin: unset;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 22px;
+	margin: unset;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 22px;
 }

@@ -12,21 +12,29 @@ import styles from "./roaster_details.module.css"
 const RoasterDetailsTable = () => {
     const playerEditModalDialogRef = useRef()
     const confirmationModalDialogRef = useRef()
-    const { teamData, searchedData, setSearchedData } = useContext(TeamDataContext)
+    const { teamData, setTeamData, searchedData } = useContext(TeamDataContext)
 
     const [playerData, setPLayerData] = useState({})
     const [playerIndex, setPlayerIndex] = useState(null)
+    const data = searchedData?.length ? searchedData : teamData
 
     useEffect(() => {
-        if (teamData && !searchedData.length) {
-            setSearchedData(teamData)
+        if (teamData && searchedData?.length) {
+            setTeamData(
+                Array.from(new Set(
+                    teamData.concat(searchedData)
+                ))
+            )
         }
-    }, [teamData, searchedData, searchedData.length, setSearchedData])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchedData, setTeamData])
 
     const deletetPlayer = () => {
         confirmationModalDialogRef.current.hideModal()
-        setSearchedData(() =>
-            [...searchedData?.slice(0, playerIndex), ...searchedData.slice(playerIndex + 1)
+        console.log([...data?.slice(0, playerIndex), ...data?.slice(playerIndex + 1)])
+        setTeamData(() =>
+            [...teamData?.slice(0, playerIndex),
+            ...teamData?.slice(playerIndex + 1)
             ])
     }
 
@@ -42,8 +50,7 @@ const RoasterDetailsTable = () => {
         />
         <AppTable
             tableData={
-                searchedData &&
-                searchedData?.map(
+                data?.map(
                     (data) => data
                 )
             }

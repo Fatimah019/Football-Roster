@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const navLinkData = [
     {
-        url: "/roster-table",
+        url: "/roaster",
         icon: <Bars />
     },
     {

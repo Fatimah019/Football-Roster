@@ -9,9 +9,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppShell />}>
-          <Route path="roster-table" element={<Dashboard />} />
+          <Route path="roaster" element={<Dashboard />} />
           <Route path="formation-overview" element={<UsersLine />} />
-          <Route path="/" element={<Navigate to="/roster-table" />} />
+          <Route path="/" element={<Navigate to="/roaster" />} />
         </Route>
       </Routes>
     </BrowserRouter>

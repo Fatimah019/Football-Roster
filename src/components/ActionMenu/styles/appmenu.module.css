@@ -8,11 +8,13 @@
   right: 0;
   width: 233px;
 }
+
 .app_menu_container_header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .app_menu_container_header h3 {
   color: var(--text-headings);
   font-weight: 600;
@@ -21,9 +23,11 @@
   margin: 0;
   padding: 0;
 }
+
 .app_menu_container_header svg {
   cursor: pointer;
 }
+
 .app_menu_box {
   display: flex;
   flex-direction: column;

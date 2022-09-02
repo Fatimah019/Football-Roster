@@ -11,6 +11,7 @@ const AppTable = ({ columnsData,
 }) => {
     const columns = useMemo(() => columnsData, [columnsData]);
     const data = useMemo(() => tableData, [tableData]);
+    const importerModalRef = useRef()
     const tableInstance = useTable(
         {
             columns,
@@ -24,8 +25,6 @@ const AppTable = ({ columnsData,
 
     const { getTableProps, getTableBodyProps, headerGroups, prepareRow, page } =
         tableInstance;
-
-    const importerModalRef = useRef()
 
     const openImporterModal = () => {
         importerModalRef.current.displayModal()
@@ -47,7 +46,7 @@ const AppTable = ({ columnsData,
             </thead>
 
             {
-                !data.length ? (
+                !data?.length ? (
                     <tbody>
                         <tr className={styles.table_empty_content}>
                             <td colSpan="100%"><p>You do not have any players on the roster</p><span onClick={openImporterModal}>Import Team</span></td>
